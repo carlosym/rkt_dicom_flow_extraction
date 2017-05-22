@@ -1,2 +1,2 @@
 #Run app
-docker run -v $(pwd):/home/data -t -i carlosym1/rkt_dicom_ecg_flow_detection data/in/ data/out/
+docker run -v $(pwd):/home/data carlosym1/rkt_dicom_flow_extraction data/in/ data/out/
