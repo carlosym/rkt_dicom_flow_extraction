@@ -40,13 +40,22 @@ RUN apt-get -qq update && apt-get -qq install -y       \
 RUN pip3 install --no-cache-dir pydicom
 RUN pip3 install --no-cache-dir -U scikit-learn
 
-COPY func1.py /home
-COPY func2.py /home
-COPY functions.py /home
-COPY rkt_dicom_flow_extraction.py /home
+#COPY func1.py /home
+#COPY func2.py /home
+#COPY functions.py /home
+#COPY rkt_dicom_flow_extraction.py /home
 
-#RUN wget https://raw.githubusercontent.com/carlosym/rkt_dicom_ecg_peaks_detection/master/rkt_dicom_ecg_pics_detection.py
-#RUN mv rkt_dicom_ecg_pics_detection.py /home/rkt_dicom_ecg_pics_detection.py
+RUN wget https://raw.githubusercontent.com/carlosym/rkt_dicom_flow_extraction/master/functions.py
+RUN mv functions.py /home/functions.py
+
+RUN wget https://raw.githubusercontent.com/carlosym/rkt_dicom_flow_extraction/master/func1.py
+RUN mv func1.py /home/func1.py
+
+RUN wget https://raw.githubusercontent.com/carlosym/rkt_dicom_flow_extraction/master/func2.py
+RUN mv func2.py /home/func2.py
+
+RUN wget https://raw.githubusercontent.com/carlosym/rkt_dicom_flow_extraction/master/rkt_dicom_flow_extraction.py
+RUN mv rkt_dicom_flow_extraction.py /home/rkt_dicom_flow_extraction.py
 
 RUN groupadd -r host && useradd -r -g host host && usermod -u 1000 host
 USER host
